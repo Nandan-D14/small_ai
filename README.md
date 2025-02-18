@@ -1,2 +1,6 @@
-# small_ai
-it now working well but i need to improve it 
+# My AI Model 🚀
+
+This repository implements a custom AI model using **Supervised Learning**, **Unsupervised Learning**, and **Reinforcement Learning**.
+
+## 📂 Project Structure
+
