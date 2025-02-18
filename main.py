@@ -1,87 +1,3 @@
-# import torch
-# import torch.nn.functional as F
-# import sentencepiece as spm
-# from src.transformer import TransformerLanguageModel
-
-# # # Load tokenizer
-# sp = spm.SentencePieceProcessor()
-# tokenizer_path = "my_ai_model/models/tokenizer.model"
-
-# try:
-#     sp.load(tokenizer_path)
-#     print(f"✅ Tokenizer loaded from {tokenizer_path}")
-# except Exception as e:
-#     print(f"❌ Error loading tokenizer: {e}")
-#     exit(1)
-
-# # Model parameters
-# vocab_size = sp.GetPieceSize()
-# embed_dim = 128  
-# num_heads = 4  
-# hidden_dim = 256  
-# num_layers = 4  
-
-# model = SimpleTransformer(vocab_size, embed_dim, num_heads, hidden_dim, num_layers)
-
-
-# # Load model
-# # model = SimpleTransformer(vocab_size, embed_dim, num_heads, hidden_dim, num_layers)
-# model_path = "my_ai_model/models/transformer.pth"
-
-# try:
-#     model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
-#     model.eval()
-#     print(f"✅ Model loaded from {model_path}")
-# except Exception as e:
-#     print(f"❌ Error loading model: {e}")
-#     exit(1)
-
-# def generate_text(prompt, max_length=50, temperature=1.0, top_p=0.9):
-#     """Generates text using nucleus (top-p) sampling."""
-#     input_ids = torch.tensor([sp.EncodeAsIds(prompt)], dtype=torch.long)
-
-#     with torch.no_grad():
-#         for _ in range(max_length):
-#             output = model(input_ids)  # Forward pass
-#             logits = output[:, -1, :] / temperature  # Apply temperature scaling
-#             probabilities = F.softmax(logits, dim=-1)
-
-#             # Apply nucleus (top-p) sampling
-#             sorted_probs, sorted_indices = torch.sort(probabilities, descending=True)
-#             cumulative_probs = torch.cumsum(sorted_probs, dim=-1)
-            
-#             # Remove tokens with cumulative probability above top_p
-#             top_p_mask = cumulative_probs > top_p
-#             sorted_probs[top_p_mask] = 0
-#             sorted_probs /= sorted_probs.sum()  # Normalize probabilities
-
-#             # Sample next token
-#             next_token = sorted_indices[0, torch.multinomial(sorted_probs[0], 1)].item()
-
-#             if next_token == sp.eos_id():
-#                 break
-            
-#             input_ids = torch.cat([input_ids, torch.tensor([[next_token]])], dim=1)
-
-#     return sp.DecodeIds(input_ids.squeeze(0).tolist())
-
-
-# # Example usage
-# if __name__ == "__main__":
-#     prompt =  "hello bro " #input("Enter a prompt: ")
-#     generated_text = generate_text(prompt)
-#     print("\n📝 Generated text:", generated_text)
-
-
-
-
-
-
-
-
-
-
-
 import torch
 import torch.nn.functional as F
 import sentencepiece as spm
@@ -290,7 +206,7 @@ def main():
         generated_text = generator.generate(
             prompt=prompt,
             max_length=70,
-            temperature=0.7,
+            temperature=0.001,
             top_p=0.92,
             top_k=50,
             repetition_penalty=1.2,
