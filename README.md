@@ -5,8 +5,8 @@ This repository implements a small AI model using **Supervised Learning**.
 ## Steps to Run the program
   1.  Make a clean tree structure of your files.
   2.  Collect a good text based dataset.
-         > 10MB-20MB data gives average output.
-         > 50MB-100MB+ data gives more and more better output.
+         > 100MB-200MB data gives average output.
+         > 5GB-10GB+ data gives more and more better output.
   3.  After collecting a dataset once make sure in in tokenizer.py train.py and main.py assigned correct path of data file.
   4.  Then run this file one by one :
                tokenizer.py -> train.py ->  main.py
